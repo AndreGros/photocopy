@@ -2,9 +2,9 @@
   "name": "photocopy",
   "version": "1.0.0",
   "description": "Project photocopy",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "dev": "nodemon"
+    "dev": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
