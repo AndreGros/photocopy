@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const app = express();
 
@@ -7,6 +8,11 @@ const app = express();
 mongoose.connect('mongodb://gros:mongo123@ds045077.mlab.com:45077/projectphotocopy',{ 
     useNewUrlParser: true 
 });
+
+app.use(cors());
+
+//Preciso dizer pro express que estou trabalhando com json
+app.use(express.json());
 
 //Declarando router
 app.use(require('./routes'));

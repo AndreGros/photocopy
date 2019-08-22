@@ -1,7 +1,7 @@
-let mongoose = require('mongoose');
-let Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+//let Schema = mongoose.Schema;
 
-let teacherSchema = new Schema({
+const teacherSchema = new mongoose.Schema({
     matriculation: {
         type: Number,
         min: 0,
@@ -12,7 +12,9 @@ let teacherSchema = new Schema({
         minlength: 1,
         maxlength: 80,
         required: true
-    }
+    } 
+}, {
+    timestamps: true
 });
 
 module.exports = mongoose.model('Teacher', teacherSchema);
