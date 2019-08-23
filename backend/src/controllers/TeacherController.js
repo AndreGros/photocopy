@@ -2,6 +2,16 @@ const Teacher = require('../models/teacher');
 const Messages = require('../config/validationMessages')
 
 module.exports = {
+    async createTeacher(req, res) {
+        const { matriculation, name } = req.body;
+
+        const postTeacher = await Teacher.create({
+            matriculation,
+            name
+        });
+
+        return res.status(201).json({ id: postTeacher._id });
+    },
 
     async getAllTeachers(req, res) {
         const teachers = await Teacher.find().sort('-createdAt');
@@ -19,17 +29,6 @@ module.exports = {
         });
 
         return res.json(teacher);
-    },
-
-    async createTeacher(req, res) {
-        const { matriculation, name } = req.body;
-
-        const postTeachers = await Teacher.create({
-            matriculation,
-            name
-        });
-
-        return res.status(201).json({ id: postTeachers._id });
     },
 
     async updateTeacher(req, res) {

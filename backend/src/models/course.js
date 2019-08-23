@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const courseSchema = new Schema({
+const courseSchema = new mongoose.Schema({
     code: {
         type: String,
         min: 0,
@@ -13,6 +12,8 @@ const courseSchema = new Schema({
         maxlength: 80,
         required: true
     }
+}, {
+    timestamps: true
 });
 
 module.exports = mongoose.model('Course', courseSchema);

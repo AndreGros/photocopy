@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-//let Schema = mongoose.Schema;
 
 const teacherSchema = new mongoose.Schema({
     matriculation: {
