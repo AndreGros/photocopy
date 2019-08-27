@@ -14,8 +14,7 @@ const disciplineSchema = new mongoose.Schema ({
     },
     academicYear: {
         type: Number,
-        min: 2,
-        max: 4
+        min: 2
     },
     numberCopies: {
         type: Number,
@@ -23,10 +22,12 @@ const disciplineSchema = new mongoose.Schema ({
         required: true
     },
     teacher: {
-        _id: String
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Teacher'
     },
     course: {
-        _id: String
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Course'
     }
 }, {
     timestamps: true
