@@ -1,19 +1,14 @@
-const mongoose = require('mongoose');
+const { Model, DataTypes } = require('sequelize');
 
-const courseSchema = new mongoose.Schema({
-    code: {
-        type: String,
-        min: 0,
-        required: true
-    },
-    name: {
-        type: String,
-        minlength: 1,
-        maxlength: 255,
-        required: true
+class Course extends Model {
+    static init(sequelize) {
+        super.init({
+            code: DataTypes.INTEGER,
+            name: DataTypes.STRING,
+        }, {
+            sequelize
+        })
     }
-}, {
-    timestamps: true
-});
+}
 
-module.exports = mongoose.model('Course', courseSchema);
+module.exports = Course;

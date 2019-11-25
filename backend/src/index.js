@@ -1,13 +1,9 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 
-const app = express();
+require('./database');
 
-//Conexão com o Mongo
-mongoose.connect('mongodb://gros:mongo123@ds045077.mlab.com:45077/projectphotocopy',{ 
-    useNewUrlParser: true 
-});
+const app = express();
 
 app.use(cors());
 

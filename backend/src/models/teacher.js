@@ -1,19 +1,14 @@
-const mongoose = require('mongoose');
+const { Model, DataTypes } = require('sequelize');
 
-const teacherSchema = new mongoose.Schema({
-    matriculation: {
-        type: Number,
-        min: 0,
-        required: true
-    },
-    name: {
-        type: String,
-        minlength: 1,
-        maxlength: 80,
-        required: true
-    } 
-}, {
-    timestamps: true
-});
+class Teacher extends Model {
+    static init(sequelize) {
+        super.init({
+            matriculation: DataTypes.INTEGER,
+            name: DataTypes.STRING,
+        }, {
+            sequelize
+        })
+    }
+}
 
-module.exports = mongoose.model('Teacher', teacherSchema);
+module.exports = Teacher;

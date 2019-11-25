@@ -10,34 +10,32 @@ module.exports = {
             name
         });
 
-        return res.status(201).json({ id: postCourse._id });
+        return res.status(201).json({ id: postCourse.id });
     },
     
     async getAllCourses(req, res) {
-        const courses = await Course.find().sort('-createdAt');
+        const courses = await Course.findAll();
 
         return res.json(courses);
     },
 
     async getCourse(req, res) {
-        await Course.findById(req.params._id, function(error, course) {
-            if(error || course == null) {
-                res.status(404).json({ message: Messages.MESSAGE_NOT_FOUND });
-            } else {
-                res.json(course);
-            }
-        });
-
-        return res.json(course);
+        const course = await Course.findByPk(req.params.id);
+            
+        if(course === null) {
+            res.status(404).json({ message: Messages.MESSAGE_NOT_FOUND });
+        } else {
+            return res.json(course);
+        }
     },
 
     async updateCourse(req, res) {
 
-        const putCourse = await Course.findById(req.params._id);
+        const putCourse = await Course.findByPk(req.params.id);
         
         const { code, name } = req.body;
 
-        await putCourse.updateOne({
+        await putCourse.update({
             code,
             name
         });
