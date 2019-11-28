@@ -21,5 +21,7 @@ routes.put('/courses/:id', CourseController.updateCourse);
 //Middlewares para a ação relacionada as disciplinas
 routes.post('/disciplines', DisciplineController.createDiscipline);
 routes.get('/disciplines', DisciplineController.getAllTDisciplines);
+routes.get('/disciplines/:id', DisciplineController.getDiscipline);
+routes.get('/disciplines/:id', DisciplineController.updateDiscipline);
 
 module.exports = routes;

@@ -1,36 +1,21 @@
-const mongoose = require('mongoose');
+const { Model, DataTypes } = require('sequelize');
 
-const disciplineSchema = new mongoose.Schema ({
-    code: {
-        type: Number,
-        min: 0,
-        required: true
-    },
-    name: {
-        type: String,
-        minlength: 1,
-        maxlength: 255,
-        required: true
-    },
-    academicYear: {
-        type: Number,
-        min: 2
-    },
-    numberCopies: {
-        type: Number,
-        min: 1,
-        required: true
-    },
-    teacher: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Teacher'
-    },
-    course: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Course'
+class Discipline extends Model {
+    static init(sequelize) {
+        super.init({
+            code: DataTypes.INTEGER,
+            name: DataTypes.STRING,
+            academicYear: DataTypes.INTEGER,
+            numberCopies: DataTypes.INTEGER,
+        }, {
+            sequelize
+        })
     }
-}, {
-    timestamps: true
-});
 
-module.exports = mongoose.model('Discipline', disciplineSchema);
+    static associations(models) {
+        this.belongsTo(models.Teacher, { foreignKey: 'theacher_id', as: 'teacher' });
+        this.belongsTo(models.Course, { foreignKey: 'course_id', as: 'course' });
+    }
+}
+
+module.exports = Discipline;

@@ -18,6 +18,20 @@ module.exports = {
           type: Sequelize.STRING,
           allowNull: false,
         },
+        course_id: {
+          type: Sequelize.UUID,
+          allowNull: false,
+          references: { model: 'courses', key: 'id'},
+          onUpdate: 'CASCADE',
+          onDelete: 'CASCADE',
+        },
+        teacher_id: {
+          type: Sequelize.UUID,
+          allowNull: false,
+          references: { model: 'teachers', key: 'id'},
+          onUpdate: 'CASCADE',
+          onDelete: 'CASCADE',
+        },
         academic_year: {
           type: Sequelize.INTEGER,
           allowNull: false,
